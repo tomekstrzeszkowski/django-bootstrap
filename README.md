@@ -7,6 +7,12 @@ Required:
  - pre-commit
    `pip install pre-commit`
 
+Build image:
+`docker-compose build`
+
+Prepare database:
+`docker-compose run --rm backend python manage.py migrate`
+
 # Starting the project
 
 `docker-compose up`
