@@ -25,6 +25,13 @@ In order to rebuild container
 
 `docker-compose down --volumes`
 
+# Testing
+### Frontend
+
+`docker-compose run --rm frontend yarn run unit`
+### Backend
+`docker-compose run --rm backend python manage.py test`
+
 # Pycharm configuration
 Setting up interpreter
 

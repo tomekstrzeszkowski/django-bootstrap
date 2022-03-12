@@ -9,7 +9,7 @@ services:
       POSTGRES_DB: project
       POSTGRES_HOST_AUTH_METHOD: trust
     ports:
-      - "5432:5432"
+      - 5432:5432
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
@@ -28,6 +28,7 @@ services:
       - 8001:8000
     depends_on:
       - backend
+      - frontend
 
   # Python environment
   backend:
@@ -48,3 +49,15 @@ services:
       database:
         condition: service_healthy
     restart: on-failure
+
+  # Javascript environment
+  frontend:
+    container_name: project-frontend
+    image: node:17-alpine
+    command: sh -c "yarn install && yarn run dev"
+    ports:
+      # port mapping required for autoreload by websocket
+      - 8080:8080
+    working_dir: /frontend
+    volumes:
+      - ./frontend:/frontend

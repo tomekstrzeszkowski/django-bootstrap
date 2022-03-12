@@ -19,6 +19,6 @@ def healthcheck(request):
 
 
 urlpatterns = [
-    # url(r"^new-app/", include("new_app.urls")),
-    path("healthcheck", healthcheck),
+    url(r"^backend/rest/", include("rest.urls")),
+    path("backend/healthcheck", healthcheck),
 ]
